@@ -1,0 +1,63 @@
+{
+	"pages": [{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/search/search",
+			"style": {}
+		}
+	    ,{
+            "path" : "pages/adress/adress",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/feedback/feedback",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/my/my",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/collect/collect",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/category/category",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/special/special",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/detail/detail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/categoryDetail/categoryDetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/goodsList/goodsList",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/shopCart/shopCart",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/location/location",
+            "style" : {}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "长江商城",
+		"navigationBarBackgroundColor": "#ab212c",
+		"backgroundColor": "#FFFFFF"
+	}
+}
