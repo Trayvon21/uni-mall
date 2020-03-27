@@ -2,55 +2,48 @@
 	"pages": [{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "长江商城"
 			}
 		},
 		{
 			"path": "pages/search/search",
 			"style": {}
+		}, {
+			"path": "pages/adress/adress",
+			"style": {}
+		}, {
+			"path": "pages/feedback/feedback",
+			"style": {}
+		}, {
+			"path": "pages/my/my",
+			"style": {}
+		}, {
+			"path": "pages/collect/collect",
+			"style": {}
+		}, {
+			"path": "pages/category/category",
+			"style": {}
+		}, {
+			"path": "pages/topic/topic",
+			"style": {}
+		}, {
+			"path": "pages/detail/detail",
+			"style": {}
+		}, {
+			"path": "pages/categoryDetail/categoryDetail",
+			"style": {}
+		}, {
+			"path": "pages/goodsList/goodsList",
+			"style": {}
+		}, {
+			"path": "pages/shopCart/shopCart",
+			"style": {}
+		}, {
+			"path": "pages/location/location",
+			"style": {}
 		}
 	    ,{
-            "path" : "pages/adress/adress",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/feedback/feedback",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/my/my",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/collect/collect",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/category/category",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/special/special",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/detail/detail",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/categoryDetail/categoryDetail",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/goodsList/goodsList",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/shopCart/shopCart",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/location/location",
+            "path" : "pages/topicDetail/topicDetail",
             "style" : {}
         }
     ],
@@ -59,5 +52,42 @@
 		"navigationBarTitleText": "长江商城",
 		"navigationBarBackgroundColor": "#ab212c",
 		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#666666",
+		"selectedColor": "#b62e1a",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/imgs/index.png",
+				"selectedIconPath": "static/imgs/index-active.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/topic/topic",
+				"iconPath": "static/imgs/special.png",
+				"selectedIconPath": "static/imgs/special-active.png",
+				"text": "专题"
+			},
+			{
+				"pagePath": "pages/category/category",
+				"iconPath": "static/imgs/category.png",
+				"selectedIconPath": "static/imgs/category-active.png",
+				"text": "分类"
+			},
+			{
+				"pagePath": "pages/shopCart/shopCart",
+				"iconPath": "static/imgs/shopCart.png",
+				"selectedIconPath": "static/imgs/shopCart-active.png",
+				"text": "购物车"
+			},
+			{
+				"pagePath": "pages/my/my",
+				"iconPath": "static/imgs/my.png",
+				"selectedIconPath": "static/imgs/my-active.png",
+				"text": "我的"
+			}
+		]
 	}
 }

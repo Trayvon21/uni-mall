@@ -1,0 +1,41 @@
+*{
+	font-size: 28upx;
+}
+.flex{
+	display: flex;
+	&-nowrap{
+		flex-wrap: nowrap;
+	}
+	&-wrap{
+		flex-wrap: wrap;
+	}
+}
+.a-center{
+	align-items: center;
+}
+.jc{
+	&-around{
+		justify-content: space-around;
+	}
+	&-between{
+		justify-content: space-between;
+	}
+}
+.txt-hidden{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.position{
+	&-re{
+		position: relative;
+	}
+	&-ab{
+		position: absolute;
+	}
+}
+.t-center{
+	text-align: center;
+}
+
