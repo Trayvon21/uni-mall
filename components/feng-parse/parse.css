@@ -96,18 +96,18 @@
 .wxParse .pre {
   overflow: auto;
   background: #f5f5f5;
-  padding: 16upx;
+  padding: 16rpx;
   white-space: pre;
-  margin: 1em 0upx;
-  font-size: 24upx;
+  margin: 1em 0rpx;
+  font-size: 24rpx;
 }
 .wxParse .code {
 	overflow: auto;
-	padding: 16upx;
+	padding: 16rpx;
 	white-space: pre;
-	margin: 1em 0upx;
+	margin: 1em 0rpx;
 	background: #f5f5f5;
-	font-size: 24upx;
+	font-size: 24rpx;
 }
 
 .wxParse .big {
@@ -146,7 +146,7 @@
 
 .wxParse .video {
   text-align: center;
-  margin: 22upx 0;
+  margin: 22rpx 0;
 }
 
 .wxParse .video-video {
@@ -163,11 +163,11 @@
 }
 
 .wxParse .blockquote {
-  margin: 10upx 0;
-  padding: 22upx 0 22upx 22upx;
+  margin: 10rpx 0;
+  padding: 22rpx 0 22rpx 22rpx;
   font-family: Courier, Calibri, "宋体";
   background: #f5f5f5;
-  border-left: 6upx solid #dbdbdb;
+  border-left: 6rpx solid #dbdbdb;
 }
 .wxParse .blockquote .p {
   margin: 0;
@@ -250,7 +250,7 @@
 .wxParse  .table .td{
 	border-collapse:collapse;
 	box-sizing: border-box;
-	border: 2upx solid #dadada;
+	border: 2rpx solid #dadada;
 	overflow:auto;
 }
 .wxParse .audio, .wxParse .uni-audio-default{

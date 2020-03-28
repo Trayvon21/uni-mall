@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<u-parse :content="content" @navigate="navigate"></u-parse>
+		<u-parse :content="content"></u-parse>
 	</view>
 </template>
 
@@ -24,9 +24,6 @@
 					}
 
 				})
-			},
-			navigate() {
-				console.log(1);
 			}
 		},
 		onLoad(options) {
@@ -39,8 +36,8 @@
 	.topic-detail {
 		width: 100%;
 
-		/deep/ img {
-			width: 750upx;
-		}
+		// /deep/ img {
+		// 	width: 750rpx;
+		// }
 	}
 </style>

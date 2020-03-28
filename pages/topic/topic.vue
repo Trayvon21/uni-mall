@@ -54,15 +54,15 @@
 <style lang="scss">
 	.topic-pic {
 		width: 100%;
-		height: 400upx;
+		height: 400rpx;
 	}
 
 	.subtitle {
 		color: #b8b8b8;
-		margin: 10upx;
+		margin: 10rpx;
 	}
 
 	.topic-each {
-		margin-bottom: 40upx;
+		margin-bottom: 40rpx;
 	}
 </style>

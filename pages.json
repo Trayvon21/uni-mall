@@ -21,7 +21,7 @@
 			"path": "pages/collect/collect",
 			"style": {}
 		}, {
-			"path": "pages/category/category",
+			"path": "pages/categoryBar/categoryBar",
 			"style": {}
 		}, {
 			"path": "pages/topic/topic",
@@ -30,7 +30,7 @@
 			"path": "pages/detail/detail",
 			"style": {}
 		}, {
-			"path": "pages/categoryDetail/categoryDetail",
+			"path": "pages/category/category",
 			"style": {}
 		}, {
 			"path": "pages/goodsList/goodsList",
@@ -41,12 +41,14 @@
 		}, {
 			"path": "pages/location/location",
 			"style": {}
+		}, {
+			"path": "pages/topicDetail/topicDetail",
+			"style": {}
+		}, {
+			"path": "pages/brandDetail/brandDetail",
+			"style": {}
 		}
-	    ,{
-            "path" : "pages/topicDetail/topicDetail",
-            "style" : {}
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "长江商城",
@@ -71,7 +73,7 @@
 				"text": "专题"
 			},
 			{
-				"pagePath": "pages/category/category",
+				"pagePath": "pages/categoryBar/categoryBar",
 				"iconPath": "static/imgs/category.png",
 				"selectedIconPath": "static/imgs/category-active.png",
 				"text": "分类"
