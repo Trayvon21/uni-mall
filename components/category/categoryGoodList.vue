@@ -4,18 +4,12 @@
 			<view class="right-front">{{currentOne.front_desc}}</view>
 			<image class="position-ab right-pic" :src="currentOne.wap_banner_url" mode=""></image>
 		</view>
-		<view class="right-title flex jc-around">
-			<view class="flex a-center">
-				<view class="title-line" />
-				<view>{{currentOne.name}}分类</view>
-				<view class="title-line" />
-			</view>
-		</view>
+		<titleLine>{{currentOne.name}}分类</titleLine>
 		<view class="right-main t-center">
 			<view class="right-each" @click="gotoCategory('category',currentOne.id,item.id)" v-for="item in currentOne.subList"
 			 :key="item.id">
 				<image :src="item.wap_banner_url" mode=""></image>
-				<view class="">
+				<view>
 					{{item.name}}
 				</view>
 			</view>
@@ -24,7 +18,11 @@
 </template>
 
 <script>
+	import titleLine from "../common/titleLine.vue"
 	export default {
+		components: {
+			titleLine
+		},
 		props: {
 			currentOne: {
 				type: Object,
@@ -60,16 +58,7 @@
 			}
 		}
 
-		.right-title {
-			margin: 20rpx;
-		}
-
-		.title-line {
-			width: 100rpx;
-			height: 4rpx;
-			margin: 20rpx;
-			background: #ededed;
-		}
+		
 
 		.right-each {
 			width: 170rpx;

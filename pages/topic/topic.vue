@@ -2,7 +2,7 @@
 	<view class="topic-container">
 		<view class="t-center topic-each" v-for="item in topicList" :key="item.id" @click="gotoDetail(item.id)">
 			<image class="topic-pic" :src="item.scene_pic_url" mode=""></image>
-			<view class="">
+			<view>
 				{{item.title}}
 			</view>
 			<view class="subtitle">

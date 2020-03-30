@@ -12,8 +12,8 @@
 		</scroll-view>
 		<view style="background: #F5F5F5;overflow: hidden;" v-if="currentNav">
 			<view class="category-header flex jc-around t-center a-center">
-				<view class="">
-					<view class="">
+				<view>
+					<view>
 						{{currentNav.name}}
 					</view>
 					<view class="header-info">
@@ -22,7 +22,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="goods-boxs" v-if="goodList.length>0">
+		<view v-if="goodList.length>0">
 			<goodBox v-for="item in goodList" :item="item" :key="item.id" />
 		</view>
 		<view v-else>
@@ -101,15 +101,6 @@
 		margin: 20rpx 0;
 		background: white;
 	}
-
-	.goods-boxs {
-		>view {
-			display: inline-block;
-			margin: 0 17rpx;
-		}
-	}
-
-
 
 	.header-info {
 		margin-top: 20rpx;

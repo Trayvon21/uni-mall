@@ -1,32 +1,32 @@
 <template>
 	<view>
-		<view class="">
+		<view>
 			<uniSearchBar @confirm="goSearch" @cancel="cancel" @input="searchVal" cancelButton="always" :value="value"></uniSearchBar>
 		</view>
-		<view class="" v-if="results.length>0">
+		<view v-if="results.length>0">
 			<view class="reslut-box" v-for="item in results" :key="item.id" @click="gotoDetail(item.id)">
 				{{item.name}}
 			</view>
 		</view>
 		<view class="search-about" v-else>
-			<view class="" v-if="historyData.length>0">
+			<view v-if="historyData.length>0">
 				<view class="flex jc-between">
 					<view class="search-title">搜索历史</view>
-					<view class="" @click="clearHistory">
+					<view @click="clearHistory">
 						<uni-icons type="trash" size="20"></uni-icons>
 					</view>
 				</view>
-				<view class="">
+				<view>
 					<view class="search-each" @click="goSearch(item.keyword)" v-for="item in historyData" :key="item.id">
 						{{item.keyword}}
 					</view>
 				</view>
 			</view>
-			<view class="">
+			<view>
 				<view class="search-title">
 					热门搜索
 				</view>
-				<view class="">
+				<view>
 					<view class="search-each" @click="goSearch(item.keyword)" :class="[item.is_hot?'is_hot':'']" v-for="item in hotKeywordList"
 					 :key="item.id">
 						{{item.keyword}}

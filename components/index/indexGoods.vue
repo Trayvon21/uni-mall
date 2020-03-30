@@ -8,7 +8,7 @@
 		</view>
 		<scroll-view scroll-x="true">
 			<view class="flex flex-nowrap">
-				<view v-for="item in items" :key="item.id" class="newGood-each">
+				<view v-for="item in items" :key="item.id" class="newGood-each" @click="$gotoDetail('detail',item.id)">
 					<image :src="item.list_pic_url" mode=""></image>
 					<view class="goods-info">
 						<view class="txt-hidden">

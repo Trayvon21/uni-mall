@@ -1,9 +1,25 @@
 <script>
 	export default {
+		globalData: {
+			active: null
+		},
+		methods: {
+			showDote() {
+				this.$api.getCartList().then(res => {
+					if (res.data.data) {
+						uni.setTabBarBadge({
+							index: 3,
+							text: String(res.data.data.length)
+						})
+					}
+				})
+			}
+		},
 		onLaunch: function() {
 			console.log('App Launch');
 		},
 		onShow: function() {
+			this.showDote()
 			console.log('App Show');
 		},
 		onHide: function() {

@@ -3,7 +3,7 @@
 		<view class="txt-hidden" v-if="location">
 			{{location}}
 		</view>
-		<view class="" v-else>
+		<view v-else>
 			获取定位中...
 		</view>
 	</view>

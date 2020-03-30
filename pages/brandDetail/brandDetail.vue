@@ -10,7 +10,7 @@
 		<view class="simple_desc">
 			{{brandData.simple_desc}}
 		</view>
-		<view style="background: #f5f5f5;" class="goods-box" v-if="goodsList.length>0">
+		<view style="background: #f5f5f5;" v-if="goodsList.length>0">
 			<goodBox v-for="item in goodsList" :item="item" :key="item.id"></goodBox>
 		</view>
 		<view class="brand-info t-center" v-else>数据库暂无数据</view>
@@ -73,13 +73,6 @@
 		width: 100%;
 		color: gray;
 		font-size: 32rpx;
-	}
-
-	.goods-box {
-		>view {
-			display: inline-block;
-			margin: 0 17rpx;
-		}
 	}
 
 	.simple_desc {

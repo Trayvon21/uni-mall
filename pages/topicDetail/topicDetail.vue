@@ -1,18 +1,21 @@
 <template>
 	<view>
-		<u-parse :content="content"></u-parse>
+		<u-parse :html="content" :tag-style="tagStyle"></u-parse>
 	</view>
 </template>
 
 <script>
-	import uParse from "@/components/feng-parse/parse.vue"
+import uParse from '../../components/u-parser/u-parser.vue'
 	export default {
 		components: {
 			uParse
 		},
 		data() {
 			return {
-				content: null
+				content: null,
+				tagStyle: {
+					img: 'display:block'
+				}
 			}
 		},
 		methods: {

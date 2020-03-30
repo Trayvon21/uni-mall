@@ -1,6 +1,9 @@
 *{
 	font-size: 28rpx;
+	margin: 0;
+	padding: 0;
 }
+
 .flex{
 	display: flex;
 	&-nowrap{
@@ -19,6 +22,9 @@
 	}
 	&-between{
 		justify-content: space-between;
+	}
+	&-center{
+		justify-content: center;
 	}
 }
 .txt-hidden{
@@ -39,3 +45,20 @@
 	text-align: center;
 }
 
+.disc{
+	&::before{
+		content:"\25E6";
+		color:red;
+		font-size:24rpx;
+		margin-right: 10rpx;
+	}
+	&-filled::before{
+		content:"\2022";
+		color:red;
+		font-size:24rpx;
+		margin-right: 10rpx;
+	}
+}
+.border-down{
+	border-bottom: 2rpx solid #F5F5F5;
+}

@@ -9,7 +9,7 @@
 			"path": "pages/search/search",
 			"style": {}
 		}, {
-			"path": "pages/adress/adress",
+			"path": "pages/address/address",
 			"style": {}
 		}, {
 			"path": "pages/feedback/feedback",
@@ -48,7 +48,15 @@
 			"path": "pages/brandDetail/brandDetail",
 			"style": {}
 		}
-	],
+	    ,{
+            "path" : "pages/payList/payList",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/addressDetail/addressDetail",
+            "style" : {}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "长江商城",

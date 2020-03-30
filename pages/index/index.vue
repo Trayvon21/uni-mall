@@ -2,7 +2,7 @@
 	<view class="index-container">
 		<!-- 头部定位于搜索框 -->
 		<view class="index-header flex jc-between a-center">
-			<view class="" @click="openMap">
+			<view @click="openMap">
 				<!-- #ifdef MP-WEIXIN -->
 				<MPLocation ref="location" />
 				<!-- #endif -->
@@ -48,7 +48,7 @@
 					<view class="index-brand position-re" @click="$gotoDetail('brandDetail',item.id)" v-for="item in dataList.brandList"
 					 :key="item.id">
 						<view class="position-ab brand-info" style="z-index: 1;">
-							<view class="">
+							<view>
 								{{item.name}}
 							</view>
 							<view class="brand-price">
@@ -71,7 +71,7 @@
 					<view class="flex">
 						<view class="topic-box" v-for="item in dataList.topicList" @click="$gotoDetail('topicDetail',item.id)" :key="item.id">
 							<image :src="item.scene_pic_url" mode=""></image>
-							<view class="">
+							<view>
 								<text>{{item.title}}</text>
 								<text style="color: red; margin-left: 20rpx;font-size: 24rpx;">￥{{item.price_info}}元起</text>
 							</view>
@@ -81,7 +81,7 @@
 				</scroll-view>
 			</view>
 			<!-- 居家、餐厨 -->
-			<view class="" style="background: #eeeeee;">
+			<view style="background: #eeeeee;">
 				<indexGoodBox v-for="item in dataList.newCategoryList" :key="item.id" :item="item" />
 			</view>
 		</view>

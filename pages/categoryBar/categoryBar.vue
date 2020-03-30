@@ -1,12 +1,12 @@
 <template>
 	<view class="category-container">
 		<view class="position-re header-search">
-			<input class="header-input" placeholder="请输入关键字" type="text" value="">
-			<image class="search-pic position-ab" src="../../static/imgs/search.png" mode="">
+			<input class="header-input" placeholder="请输入关键字" type="text" />
+			<image class="search-pic position-ab" src="../../static/imgs/search.png" />
 		</view>
 		<view class="flex">
 			<view class="category-left">
-				<categoryNav v-if="categoryList" @changeNav="changeNav" :navList="categoryList"></categoryNav>
+				<categoryNav ref="categoryNav" v-if="categoryList" @changeNav="changeNav" :navList="categoryList"></categoryNav>
 			</view>
 			<scroll-view scroll-y="true" :style="{height: rightHeight+'px'}" class="category-right">
 				<categoryList v-if="currentOne" :currentOne="currentOne"></categoryList>
@@ -16,10 +16,9 @@
 </template>
 
 <script>
-	import categoryNav from "../../components/category/categoryNav.vue"
-	import categoryList from "../../components/category/categoryGoodList.vue"
+	import categoryNav from "../../components/category/categoryNav.vue";
+	import categoryList from "../../components/category/categoryGoodList.vue";
 	export default {
-
 		components: {
 			categoryList,
 			categoryNav
@@ -34,29 +33,44 @@
 		methods: {
 			changeNav(id) {
 				this.$api.getCurrentCategory(id).then(res => {
-					this.currentOne = res.data.data.currentOne
+					this.currentOne = res.data.data.currentOne;
 					console.log(this.currentOne);
-				})
+				});
 			},
-			getCategoryList() {
+			getCategoryList(id) {
 				this.$api.getCategoryList().then(res => {
-					this.categoryList = res.data.categoryList
-					this.changeNav(this.categoryList[0].id)
-				})
+					this.categoryList = res.data.categoryList;
+					if (id) {
+						this.changeNav(id)
+						this.$nextTick(() => {
+							console.log(this.$refs.categoryNav);
+							this.$refs.categoryNav.active = Number(id)
+						})
+					} else {
+						this.changeNav(this.categoryList[0].id);
+					}
+				});
 			},
 			adaptive() {
 				this.$nextTick(() => {
-					uni.createSelectorQuery().in(this).select(".category-right").boundingClientRect(data => {
-						this.rightHeight = uni.getSystemInfoSync().windowHeight - data.top
-					}).exec();
-				})
+					uni
+						.createSelectorQuery()
+						.in(this)
+						.select(".category-right")
+						.boundingClientRect(data => {
+							this.rightHeight = uni.getSystemInfoSync().windowHeight - data.top;
+						})
+						.exec();
+				});
 			}
 		},
 		onLoad() {
-			this.getCategoryList()
-			this.adaptive()
+			this.adaptive();
+		},
+		onShow() {
+			this.getCategoryList(getApp().globalData.active)
 		}
-	}
+	};
 </script>
 
 <style lang="scss">
