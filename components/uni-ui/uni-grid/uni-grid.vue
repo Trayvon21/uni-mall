@@ -10,6 +10,18 @@
 	// #ifdef APP-NVUE
 	const dom = uni.requireNativePlugin('dom');
 	// #endif
+
+	/**
+	 * Grid 宫格
+	 * @description 宫格组件
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=27
+	 * @property {Number} column 每列显示个数
+	 * @property {String} borderColor 边框颜色
+	 * @property {Boolean} showBorder 是否显示边框
+	 * @property {Boolean} square 是否方形显示
+	 * @property {Boolean} Boolean 点击背景是否高亮
+	 * @event {Function} change 点击 grid 触发，e={detail:{index:0}}，index 为当前点击 gird 下标
+	 */
 	export default {
 		name: 'UniGrid',
 		props: {
@@ -76,13 +88,13 @@
 					.select(`#${this.elId}`)
 					.boundingClientRect()
 					.exec(ret => {
-						this.width = parseInt((ret[0].width-1) / this.column) + 'px'
+						this.width = parseInt((ret[0].width - 1) / this.column) + 'px'
 						fn(this.width)
 					})
 				// #endif
 				// #ifdef APP-NVUE
 				dom.getComponentRect(this.$refs['uni-grid'], (ret) => {
-					this.width = parseInt((ret.size.width-1) / this.column)  + 'px'
+					this.width = parseInt((ret.size.width - 1) / this.column) + 'px'
 					fn(this.width)
 				})
 				// #endif
@@ -91,7 +103,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 	.uni-grid-wrap {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -107,13 +119,14 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		// flex: 1;
+		/* flex: 1;
+ */
 		flex-direction: row;
 		flex-wrap: wrap;
 	}
 
 	.uni-grid--border {
-		border-left-color: $uni-border-color;
+		border-left-color: #e5e5e5;
 		border-left-style: solid;
 		border-left-width: 1px;
 	}

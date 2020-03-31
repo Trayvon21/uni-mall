@@ -15,18 +15,17 @@
 			</view>
 			<view class="address-checkbox">
 				<label>
-					<checkbox v-model="addressForm.checked" :checked="addressForm.checked" @click="changeChecked" /><text>设置为默认地址</text>
+					<checkbox :checked="Boolean(addressForm.checked)" @click="changeChecked" /><text>设置为默认地址</text>
 				</label>
 			</view>
 		</view>
-
 		<view class="bottom-save position-ab t-center" @click="saveAddress">保存</view>
 		<simple-address ref="simpleAddress" :pickerValueDefault="cityPickerValueDefault" @onConfirm="onConfirm" themeColor='#007AFF'></simple-address>
 	</view>
 </template>
 
 <script>
-	import simpleAddress from '@/components/simple-address/simple-address.nvue';
+	import simpleAddress from '../../components/uni-ui/simple-address/simple-address.nvue';
 	export default {
 		components: {
 			simpleAddress
@@ -72,11 +71,6 @@
 							title: "操作成功",
 							duration: 800
 						})
-						setTimeout(() => {
-							uni.navigateTo({
-								url: "/pages/address/address"
-							})
-						}, 800)
 					}
 				})
 			}

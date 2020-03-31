@@ -1,11 +1,11 @@
 <template>
-	<view>
+	<view v-if="content">
 		<u-parse :html="content" :tag-style="tagStyle"></u-parse>
 	</view>
 </template>
 
 <script>
-import uParse from '../../components/u-parser/u-parser.vue'
+	import uParse from '../../components/uni-ui/u-parser/u-parser.vue'
 	export default {
 		components: {
 			uParse
@@ -22,10 +22,11 @@ import uParse from '../../components/u-parser/u-parser.vue'
 			getTopicDetail(id) {
 				this.$api.getTopicDetail(id).then(res => {
 					if (res.status === 200) {
-						this.content = res.data.data.content
-						console.log(this.content);
+						//小程序和app不会自动识别协议头，需要用正则把//换成http://
+						const replaceReg = new RegExp('//', 'g');
+						const replaceString = `http://`
+						this.content = res.data.data.content.replace(replaceReg, replaceString);
 					}
-
 				})
 			}
 		},
@@ -38,9 +39,5 @@ import uParse from '../../components/u-parser/u-parser.vue'
 <style scoped lang="scss">
 	.topic-detail {
 		width: 100%;
-
-		// /deep/ img {
-		// 	width: 750rpx;
-		// }
 	}
 </style>

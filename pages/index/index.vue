@@ -10,7 +10,7 @@
 				<H5Location ref="location" />
 				<!-- #endif -->
 				<!-- #ifdef APP-PLUS -->
-				<AppLocation />
+				<AppLocation ref="location" />
 				<!-- #endif -->
 			</view>
 			<view class="position-re" @click="goto('/pages/search/search')">
@@ -154,6 +154,7 @@
 			}
 		},
 		onShow() {
+			console.log(this.$refs.location);
 			if (!uni.getStorageSync('local')) {
 				this.$nextTick(() => {
 					this.$refs.location.getAuthorize()
@@ -164,7 +165,16 @@
 				this.$nextTick(() => {
 					this.$refs.location.location = location.name
 				})
-
+			}
+			if (uni.getStorageSync('user')) {
+				this.$api.getCartList().then(res => {
+					if (res.data.data) {
+						uni.setTabBarBadge({
+							index: 3,
+							text: String(res.data.data.length)
+						})
+					}
+				})
 			}
 		},
 		onLoad() {

@@ -43,6 +43,7 @@
 					type: "gcj02",
 					success: (res) => {
 						console.log(res);
+						console.log('getLocationH5');
 						this.$api.getLocationH5(`${res.latitude},${res.longitude}`).then(result => {
 							this.location = result.data.result.address_component.street
 							uni.setStorageSync('local', {

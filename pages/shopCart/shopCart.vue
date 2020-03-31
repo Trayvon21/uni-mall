@@ -32,8 +32,8 @@
 </template>
 
 <script>
-	import uniSwipeAction from '@/components/uni-swipe-action/uni-swipe-action.vue'
-	import uniSwipeActionItem from '@/components/uni-swipe-action-item/uni-swipe-action-item.vue'
+	import uniSwipeAction from '../../components/uni-ui/uni-swipe-action/uni-swipe-action.vue'
+	import uniSwipeActionItem from '../../components/uni-ui/uni-swipe-action-item/uni-swipe-action-item.vue'
 	import payGoodBox from "../../components/common/payGoodBox.vue"
 	export default {
 
@@ -54,6 +54,10 @@
 			getCart() {
 				this.$api.getCartList().then(res => {
 					this.cartList = res.data.data
+					uni.setTabBarBadge({
+						index: 3,
+						text: String(res.data.data.length)
+					})
 					console.log(this.cartList);
 					for (var i = 0, lenI = this.cartList.length; i < lenI; ++i) {
 						const item = this.cartList[i]
@@ -120,7 +124,27 @@
 			this.setHeight()
 		},
 		onShow() {
-			this.getCart()
+			console.log(1);
+			if (uni.getStorageSync('user')) {
+				this.getCart()
+			} else {
+				uni.showModal({
+					title: '请登录',
+					content: '本页面需要登录才能操作',
+					success: (res) => {
+						if (res.confirm) {
+							uni.switchTab({
+								url: "/pages/my/my"
+							})
+						} else {
+							uni.switchTab({
+								url: "/pages/index/index"
+							})
+						}
+					}
+				});
+			}
+
 		},
 		computed: {
 			select() {

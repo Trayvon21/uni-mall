@@ -1,7 +1,5 @@
 .DS_Store
 node_modules
-*/uni-ui
-/http
 /unpackage
 config.js
 # local env files

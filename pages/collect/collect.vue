@@ -32,7 +32,25 @@
 			}
 		},
 		onShow() {
-			this.getList()
+			if (uni.getStorageSync('user')) {
+				this.getList()
+			} else {
+				uni.showModal({
+					title: '请登录',
+					content: '本页面需要登录才能操作',
+					success: (res) => {
+						if (res.confirm) {
+							uni.switchTab({
+								url: "/pages/my/my"
+							})
+						} else {
+							uni.switchTab({
+								url: "/pages/index/index"
+							})
+						}
+					}
+				});
+			}
 		}
 	}
 </script>
@@ -41,6 +59,7 @@
 	.collect-container {
 		background: #F5F5F5;
 		height: 100%;
+		width: 100%;
 	}
 
 	.collect-top {

@@ -29,9 +29,10 @@
 				</view>
 			</view>
 		</view>
-		<scroll-view scroll-y="true">
+		<scroll-view scroll-y="true" id='scroll' :style="{height:scorllHeight+'px'}">
 			<view>
 				<payGoodBox v-for="item in paylist" :item="item" :flag="false" :key="item.id"></payGoodBox>
+				<view class="" style="height: 100rpx;" />
 			</view>
 		</scroll-view>
 		<view class="flex jc-between bottom-box a-center">
@@ -56,7 +57,8 @@
 		data() {
 			return {
 				paylist: [],
-				address: null
+				address: null,
+				scorllHeight: 0
 			};
 		},
 		methods: {
@@ -102,10 +104,26 @@
 						}
 					})
 				}
+			},
+			adaptive() {
+				this.$nextTick(() => {
+					uni
+						.createSelectorQuery()
+						.in(this)
+						.select("#scroll")
+						.boundingClientRect(data => {
+							console.log(data);
+							this.scorllHeight = uni.getSystemInfoSync().windowHeight - data.top
+							console.log(this.scorllHeight);
+							//  = uni.getSystemInfoSync().windowHeight - data.top;
+						})
+						.exec();
+				});
 			}
 		},
 		onLoad(options) {
 			this.paylist = JSON.parse(options.paylist)
+			this.adaptive()
 		},
 		onShow() {
 			this.getAddress()

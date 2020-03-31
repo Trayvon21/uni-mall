@@ -105,7 +105,7 @@
 	import uniIcons from '../../components/uni-ui/uni-icons/uni-icons.vue'
 	import uniGoodsNav from '../../components/uni-ui/uni-goods-nav/uni-goods-nav.vue'
 	import titleLine from "../../components/common/titleLine.vue"
-	import parser from "@/components/u-parser/u-parser"
+	import parser from "../../components/uni-ui/u-parser/u-parser.vue"
 	import goodBox from "../../components/common/goodBox.vue"
 	import uniNumberBox from "../../components/uni-ui/uni-number-box/uni-number-box.vue"
 	export default {
@@ -200,7 +200,7 @@
 							list_pic_url: this.detailData.info.list_pic_url,
 							number: this.goodNum,
 							retail_price: this.detailData.info.retail_price,
-							type:'payNow'
+							type: 'payNow'
 						}])
 						uni.navigateTo({
 							url: `/pages/payList/payList?paylist=${paylist}`
@@ -237,12 +237,34 @@
 			getNum() {
 				this.$api.getCartList().then(res => {
 					this.options[1].info = res.data.data.length
+					uni.setTabBarBadge({
+						index: 3,
+						text: String(res.data.data.length)
+					})
 				})
 			}
 		},
 		onLoad(options) {
+			if (uni.getStorageSync('user')) {
+				this.getDetail(options.id)
+			} else {
+				uni.showModal({
+					title: '请登录',
+					content: '本页面需要登录才能操作',
+					success: (res) => {
+						if (res.confirm) {
+							uni.switchTab({
+								url: "/pages/my/my"
+							})
+						} else {
+							uni.switchTab({
+								url: "/pages/index/index"
+							})
+						}
+					}
+				});
+			}
 			this.id = options.id
-			this.getDetail(options.id)
 			this.winHeight = uni.getSystemInfoSync().windowHeight - 50
 		}
 	}

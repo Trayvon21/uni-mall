@@ -1,19 +1,23 @@
 <template>
 	<view v-if="width" :style="'width:'+width+';'+(square?'height:'+width:'')" class="uni-grid-item">
-		<view :class="{ 'uni-grid-item--border': showBorder,  'uni-grid-item--border-top': showBorder && index < column, 'uni-highlight': highlight }"
-		 :style="{  'border-right-color': borderColor ,'border-bottom-color': borderColor ,'border-top-color': borderColor }"
-		 class="uni-grid-item__box" @click="_onClick">
+		<view :class="{ 'uni-grid-item--border': showBorder,  'uni-grid-item--border-top': showBorder && index < column, 'uni-highlight': highlight }" :style="{  'border-right-color': borderColor ,'border-bottom-color': borderColor ,'border-top-color': borderColor }" class="uni-grid-item__box" @click="_onClick">
 			<slot />
 		</view>
 	</view>
 </template>
 
 <script>
+	/**
+	 * GridItem 宫格
+	 * @description 宫格组件
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=27
+	 * @property {Number} index 子组件的唯一标识 ，点击gird会返回当前的标识
+	 */
 	export default {
 		name: 'UniGridItem',
 		inject: ['grid'],
 		props: {
-			index:{
+			index: {
 				type: Number,
 				default: 0
 			}
@@ -62,7 +66,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 	.uni-grid-item {
 		/* #ifndef APP-NVUE */
 		height: 100%;
@@ -78,22 +82,24 @@
 		position: relative;
 		flex: 1;
 		flex-direction: column;
-		// justify-content: center;
-		// align-items: center;
+		/* justify-content: center;
+ */
+		/* align-items: center;
+ */
 	}
 
 	.uni-grid-item--border {
 		position: relative;
-		border-bottom-color: $uni-border-color;
+		border-bottom-color: #e5e5e5;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
-		border-right-color: $uni-border-color;
+		border-right-color: #e5e5e5;
 		border-right-style: solid;
 		border-right-width: 1px;
 	}
 
 	.uni-grid-item--border-top {
-		border-top-color: $uni-border-color;
+		border-top-color: #e5e5e5;
 		border-top-style: solid;
 		border-top-width: 1px;
 		/* #ifndef APP-NVUE */
@@ -103,6 +109,6 @@
 	}
 
 	.uni-highlight:active {
-		background-color: $uni-bg-color-hover;
+		background-color: #f1f1f1;
 	}
 </style>

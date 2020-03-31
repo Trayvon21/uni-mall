@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view v-if="addressList.length>0">
+		<scroll-view scroll-y="true" :style="{height:scorllHeight+'px'}" v-if="addressList.length>0">
 			<uni-swipe-action>
 				<uni-swipe-action-item v-for="item in addressList" :key="item.id" :options="options(item.id)" @click="onClick">
 					<view class="flex a-center addressList-each border-down" style="width: 100%;">
@@ -16,9 +16,8 @@
 					</view>
 				</uni-swipe-action-item>
 			</uni-swipe-action>
-
-		</view>
-		<view v-else>
+		</scroll-view>
+		<view v-else class="flex a-center jc-center" style="margin-top: 100rpx;">
 			暂无地址信息
 		</view>
 		<view class="address-bottom position-ab flex jc-around t-center">
@@ -33,11 +32,17 @@
 </template>
 
 <script>
+	import uniSwipeAction from '../../components/uni-ui/uni-swipe-action/uni-swipe-action.vue'
+	import uniSwipeActionItem from '../../components/uni-ui/uni-swipe-action-item/uni-swipe-action-item.vue'
 	export default {
-		components: {},
+		components: {
+			uniSwipeAction,
+			uniSwipeActionItem
+		},
 		data() {
 			return {
-				addressList: []
+				addressList: [],
+				scorllHeight: 0
 			};
 		},
 		methods: {
@@ -100,10 +105,43 @@
 					title: "开发中，敬请期待",
 					duration: 800
 				})
+			},
+			adaptive() {
+				this.$nextTick(() => {
+					uni
+						.createSelectorQuery()
+						.in(this)
+						.select(".address-bottom")
+						.boundingClientRect(data => {
+							this.scorllHeight = data.top;
+						})
+						.exec();
+				});
 			}
 		},
+		onLoad() {
+			this.adaptive()
+		},
 		onShow() {
-			this.getList()
+			if (uni.getStorageSync('user')) {
+				this.getList()
+			} else {
+				uni.showModal({
+					title: '请登录',
+					content: '本页面需要登录才能操作',
+					success: (res) => {
+						if (res.confirm) {
+							uni.switchTab({
+								url: "/pages/my/my"
+							})
+						} else {
+							uni.switchTab({
+								url: "/pages/index/index"
+							})
+						}
+					}
+				});
+			}
 		}
 	}
 </script>

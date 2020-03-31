@@ -1,11 +1,14 @@
 <template>
 	<view>
 		<view>
-			<uniSearchBar @confirm="goSearch" @cancel="cancel" @input="searchVal" cancelButton="always" :value="value"></uniSearchBar>
+			<uniSearchBar ref="search" @confirm="goSearch" @cancel="cancel" @input="searchVal" cancelButton="always" :value="value"></uniSearchBar>
 		</view>
-		<view v-if="results.length>0">
-			<view class="reslut-box" v-for="item in results" :key="item.id" @click="gotoDetail(item.id)">
+		<view v-if="results">
+			<view v-if="results.length>0" class="reslut-box" v-for="item in results" :key="item.id" @click="gotoDetail(item.id)">
 				{{item.name}}
+			</view>
+			<view v-else>
+				暂无数据
 			</view>
 		</view>
 		<view class="search-about" v-else>
@@ -27,14 +30,13 @@
 					热门搜索
 				</view>
 				<view>
-					<view class="search-each" @click="goSearch(item.keyword)" :class="[item.is_hot?'is_hot':'']" v-for="item in hotKeywordList"
-					 :key="item.id">
+					<view class="search-each" v-for="(item,index) in hotKeywordList" @click="goSearch(item.keyword)" :class="[item.is_hot?'is_hot':'']"
+					 :key="index">
 						{{item.keyword}}
 					</view>
 				</view>
 			</view>
 		</view>
-
 	</view>
 </template>
 
@@ -49,8 +51,8 @@
 		data() {
 			return {
 				historyData: [],
-				hotKeywordList: null,
-				results: [],
+				hotKeywordList: [],
+				results: null,
 				value: ''
 			};
 		},
@@ -60,33 +62,26 @@
 					if (res.status === 200) {
 						this.historyData = res.data.historyData
 						this.hotKeywordList = res.data.hotKeywordList
+						console.log(this.hotKeywordList, this.historyData);
 					}
 				})
 			},
-			searchVal(e) {
-				if (e.value === '') {
-					// this.results = []
-				}
-			},
 			goSearch(e) {
-				if (e.value) {
-					this.value = e.value
-				} else if (typeof e === 'string') {
-					this.value = e
-				} else {
-					uni.showToast({
-						icon: "none",
-						title: "参数不全",
-						duration: 800
-					})
-					return;
-				}
+				this.value = e
+				if (e.trim() === '') return
 				this.$api.searchKeyword(this.value).then(res => {
 					if (res.status === 200) {
 						this.results = res.data.keywords
+						console.log(this.results);
 					}
 					this.addHistory(this.value)
 				})
+			},
+			searchVal(e) {
+				console.log(e);
+				if (e.value === '') {
+					this.results = null
+				}
 			},
 			addHistory(value) {
 				this.$api.addHistory(value)
@@ -129,7 +124,7 @@
 		},
 		watch: {
 			results(val) {
-				if (val.length === 0) {
+				if (!val) {
 					this.searchAbout()
 				}
 			}

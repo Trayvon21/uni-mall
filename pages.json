@@ -39,24 +39,19 @@
 			"path": "pages/shopCart/shopCart",
 			"style": {}
 		}, {
-			"path": "pages/location/location",
-			"style": {}
-		}, {
 			"path": "pages/topicDetail/topicDetail",
 			"style": {}
 		}, {
 			"path": "pages/brandDetail/brandDetail",
 			"style": {}
+		}, {
+			"path": "pages/payList/payList",
+			"style": {}
+		}, {
+			"path": "pages/addressDetail/addressDetail",
+			"style": {}
 		}
-	    ,{
-            "path" : "pages/payList/payList",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/addressDetail/addressDetail",
-            "style" : {}
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "长江商城",

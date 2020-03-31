@@ -6,12 +6,19 @@
 					<image class="user-pic" v-if="user" :src="user.avatarUrl" mode="" />
 					<image v-else class="user-pic" src="../../static/imgs/admin.png" mode="" />
 				</view>
-				<view class="user-btn" v-if="user">
+				<view class="user-btn" v-if="user" @click="logon">
 					{{user.nickName}}
 				</view>
+				<!-- #ifdef MP-WEIXIN -->
 				<button class="user-btn" @getuserinfo="getUserInfo" open-type="getUserInfo" v-else>
 					点击登录
 				</button>
+				<!-- #endif -->
+				<!-- #ifdef H5 || APP-PLUS -->
+				<button class="user-btn" @click="gotoLogin" v-else>
+					点击登录
+				</button>
+				<!-- #endif -->
 			</view>
 			<view>
 				<uni-icons type="arrowright" color="white" size="30"></uni-icons>
@@ -33,9 +40,10 @@
 </template>
 
 <script>
-	import uniGrid from "@/components/uni-grid/uni-grid.vue"
-	import uniGridItem from "@/components/uni-grid-item/uni-grid-item.vue"
+	import uniGrid from "../../components/uni-ui/uni-grid/uni-grid.vue"
+	import uniGridItem from "../../components/uni-ui/uni-grid-item/uni-grid-item.vue"
 	import uniIcons from '../../components/uni-ui/uni-icons/uni-icons.vue'
+	import md5 from "md5"
 	export default {
 		components: {
 			uniIcons,
@@ -104,9 +112,24 @@
 			};
 		},
 		methods: {
+			// #ifdef MP-WEIXIN
 			getUserInfo(e) {
 				if (e.detail.rawData) {
 					this.user = JSON.parse(e.detail.rawData)
+					const openId = md5(this.user.nickName + this.user.avatarUrl)
+					uni.setStorageSync('user', {
+						nickName: this.user.nickName,
+						avatarUrl: this.user.avatarUrl,
+						openId
+					})
+					this.$api.getCartList().then(res => {
+						if (res.data.data) {
+							uni.setTabBarBadge({
+								index: 3,
+								text: String(res.data.data.length)
+							})
+						}
+					})
 				} else {
 					uni.showToast({
 						icon: "none",
@@ -114,7 +137,46 @@
 						duration: 800
 					})
 				}
-
+			},
+			// #endif
+			// #ifdef APP-PLUS || H5
+			gotoLogin() {
+				this.user = {
+					avatarUrl: 'https://avatars0.githubusercontent.com/u/57336267?s=460&u=d9836824b273cfc72214fdc353ee0f3bf5acc0fb&v=4',
+					nickName: 'Trayvon'
+				}
+				this.$api.getCartList().then(res => {
+					if (res.data.data) {
+						uni.setTabBarBadge({
+							index: 3,
+							text: String(res.data.data.length)
+						})
+					}
+				})
+				const openId = md5(this.user.nickName + this.user.avatarUrl)
+				uni.setStorageSync('user', {
+					nickName: this.user.nickName,
+					avatarUrl: this.user.avatarUrl,
+					openId
+				})
+			},
+			// #endif
+			logon() {
+				uni.showModal({
+					title: '退出登录',
+					content: '是否退出登录',
+					success: (res) => {
+						if (res.confirm) {
+							this.user = null
+							uni.removeStorageSync('user')
+							uni.removeTabBarBadge({
+								index: 3
+							})
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+				});
 			},
 			goto(e) {
 				console.log();
@@ -130,6 +192,11 @@
 						url
 					})
 				}
+			},
+		},
+		onShow() {
+			if (uni.getStorageSync('user')) {
+				this.user = uni.getStorageSync('user')
 			}
 		}
 	}

@@ -1,7 +1,8 @@
 <script>
 	export default {
 		globalData: {
-			active: null
+			active: null,
+			openId: null
 		},
 		methods: {
 			showDote() {
@@ -19,7 +20,9 @@
 			console.log('App Launch');
 		},
 		onShow: function() {
-			this.showDote()
+			if (uni.getStorageSync('user')) {
+				this.showDote()
+			}
 			console.log('App Show');
 		},
 		onHide: function() {
