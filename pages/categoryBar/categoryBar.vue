@@ -34,7 +34,10 @@
 			changeNav(id) {
 				this.$api.getCurrentCategory(id).then(res => {
 					this.currentOne = res.data.data.currentOne;
-					console.log(this.currentOne);
+					getApp().globalData.active = id
+					this.$nextTick(() => {
+						this.$refs.categoryNav.active = Number(id)
+					})
 				});
 			},
 			getCategoryList(id) {
@@ -42,10 +45,6 @@
 					this.categoryList = res.data.categoryList;
 					if (id) {
 						this.changeNav(id)
-						this.$nextTick(() => {
-							console.log(this.$refs.categoryNav);
-							this.$refs.categoryNav.active = Number(id)
-						})
 					} else {
 						this.changeNav(this.categoryList[0].id);
 					}

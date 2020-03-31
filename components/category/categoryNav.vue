@@ -23,7 +23,6 @@
 		},
 		methods: {
 			changeActive(id) {
-				this.active = id
 				this.$emit('changeNav', id)
 			},
 		}
