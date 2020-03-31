@@ -47,7 +47,6 @@
 				scorllHeight: 0,
 				cartList: [],
 				selectAll: true,
-
 			};
 		},
 		methods: {
@@ -128,6 +127,7 @@
 			if (uni.getStorageSync('user')) {
 				this.getCart()
 			} else {
+				this.cartList = []
 				uni.showModal({
 					title: '请登录',
 					content: '本页面需要登录才能操作',

@@ -169,6 +169,8 @@
 						if (res.confirm) {
 							this.user = null
 							uni.removeStorageSync('user')
+							uni.removeStorageSync('local')
+							uni.removeStorageSync('address')
 							uni.removeTabBarBadge({
 								index: 3
 							})
