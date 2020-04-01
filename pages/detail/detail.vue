@@ -70,22 +70,27 @@
 
 		</scroll-view>
 		<!-- 弹出层 -->
-		<uni-popup ref="popup" type="bottom">
+		<uni-popup ref="popup" type="bottom" :maskClick="false">
 			<view class="popup-main" style="background: #FFFFFF;">
-				<view class="flex">
-					<view>
-						<image class="popup-pic" :src="detailData.info.primary_pic_url" mode="">
+				<view class="flex jc-between">
+					<view class="flex">
+						<view>
+							<image class="popup-pic" :src="detailData.info.primary_pic_url" mode="">
+						</view>
+						<view class="popup-info">
+							<view>
+								{{detailData.info.name}}
+							</view>
+							<view class="popup-price">
+								价格 ￥{{detailData.info.retail_price}}
+							</view>
+							<view>
+								请选择数量
+							</view>
+						</view>
 					</view>
-					<view class="popup-info">
-						<view>
-							{{detailData.info.name}}
-						</view>
-						<view class="popup-price">
-							价格 ￥{{detailData.info.retail_price}}
-						</view>
-						<view>
-							请选择数量
-						</view>
+					<view class="">
+						<uni-icons @click='closePopup' type="closeempty" size="14"></uni-icons>
 					</view>
 				</view>
 				<view>
@@ -202,10 +207,13 @@
 							retail_price: this.detailData.info.retail_price,
 							type: 'payNow'
 						}])
+
 						uni.navigateTo({
 							url: `/pages/payList/payList?paylist=${paylist}`
 						})
 					}
+					this.$refs.popup.close()
+					this.showFlag = false
 				} else {
 					this.openPopup()
 				}
@@ -213,6 +221,10 @@
 			openPopup() {
 				this.$refs.popup.open()
 				this.showFlag = true
+			},
+			closePopup() {
+				this.$refs.popup.close()
+				this.showFlag = false
 			},
 			changeNum(e) {
 				this.goodNum = e
